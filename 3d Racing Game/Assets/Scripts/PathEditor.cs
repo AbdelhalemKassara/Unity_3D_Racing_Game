@@ -9,16 +9,46 @@ public class PathEditor : Editor
     PathCreator creator;
     Path path;
 
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        EditorGUI.BeginChangeCheck();
+
+        if (GUILayout.Button("Create New"))
+        {
+            Undo.RecordObject(creator, "Create New");
+            creator.CreatePath();
+            path = creator.path;
+        }
+
+        if (GUILayout.Button("Toggle Closed"))
+        {
+            Undo.RecordObject(creator, "Toggle Closed");
+            path.ToggleClosed();
+        }
+        bool autoSetControlPoints = GUILayout.Toggle(path.AutoSetControlPoints, "Auto Set Control Points");
+
+        if (autoSetControlPoints != path.AutoSetControlPoints)
+        {
+            Undo.RecordObject(creator, "Toggle auto set controls");
+            path.AutoSetControlPoints = autoSetControlPoints;
+        }
+         if (EditorGUI.EndChangeCheck()){
+             SceneView.RepaintAll();
+         }
+    }
     void OnSceneGUI()
     {
         Input();
         Draw();
     }
-    void Input(){
+    void Input()
+    {
         Event guiEvent = Event.current;
         Vector2 mousePos = HandleUtility.GUIPointToWorldRay(guiEvent.mousePosition).origin;
 
-        if(guiEvent.type == EventType.MouseDown && guiEvent.button == 0 && guiEvent.shift){
+        if (guiEvent.type == EventType.MouseDown && guiEvent.button == 0 && guiEvent.shift)
+        {
             Undo.RecordObject(creator, "Add segment");
             path.AddSegment(mousePos);
         }
