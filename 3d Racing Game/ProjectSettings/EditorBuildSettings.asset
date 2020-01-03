@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 2225fcba8207ec7449fdc6feada1240e
+  - enabled: 1
+    path: Assets/Scenes/track list.unity
+    guid: adb3a1cb603796d45ad9ad9e1e8db004
+  - enabled: 1
+    path: Assets/Scenes/Track1.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/procedurally generated track.unity
+    guid: 11c40240253d8aa4a988306bc111b727
+  - enabled: 1
+    path: Assets/Scenes/car select.unity
+    guid: 7d7143d668e596241bfd5264bdac174f
   m_configObjects: {}
