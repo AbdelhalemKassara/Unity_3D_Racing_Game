@@ -31,8 +31,10 @@ public class CarController : MonoBehaviour
     public float MaxRpm;
     private float Rpm;
     private bool BrakeBool;
+
     void Start()
     {
+        
         In = GetComponent<InputManager>();
         rb = GetComponent<Rigidbody>();
         audios = GetComponent<AudioSource>();
@@ -45,6 +47,8 @@ public class CarController : MonoBehaviour
     }
     void Update()
     {
+       
+
         if (In.HeadLights)// if the button for turning on and off the headlights is pressed
         {
             ln.ToggleHeadLights(); // call this function
@@ -146,6 +150,10 @@ public class CarController : MonoBehaviour
         else
         {
             audios.pitch = (2000f / MaxRpm);// change the pitch to depending on the rpm (audio file needs to be at max rpm)
+        }
+        if(In.GamePaused){
+
+            audios.pitch = 0f;
         }
 
 

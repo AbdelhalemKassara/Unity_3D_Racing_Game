@@ -15,6 +15,7 @@ public class InputManager : MonoBehaviour
     public bool CamView;
     public bool HandBrake;
     private string[] ConnectedCon;
+    public bool GamePaused;
 
     void Update()// increase force down on the car when the velocity of the car goes up
     {
@@ -24,8 +25,13 @@ public class InputManager : MonoBehaviour
         CamView = Input.GetButtonDown("CamView");
         HandBrake = Convert.ToBoolean(Input.GetAxis("HandBrake"));
 
-        ConnectedCon = Input.GetJoystickNames(); // gets the names of all the controllers and stores them in an array
+        if (Input.GetButtonDown("Pause") == true)
+        {
+            GamePaused = !GamePaused;
 
+        }
+
+        ConnectedCon = Input.GetJoystickNames(); // gets the names of all the controllers and stores them in an array
         if (ConnectedCon.Length > 0 && ConnectedCon[0] != "")// checks if something is stored in the array if something is stored it checks if it is blank 
         {
             throttle = Input.GetAxis("ThrottleTrigger");
@@ -41,11 +47,7 @@ public class InputManager : MonoBehaviour
 
         }
 
-        Debug.Log(ConnectedCon.Length);
 
     }
-
-
-
 
 }

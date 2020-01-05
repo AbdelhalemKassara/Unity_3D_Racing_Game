@@ -10,22 +10,21 @@ public class Buttons : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
-    public void TrackList()
+
+    public void Track1()
     {
         SceneManager.LoadScene(1);
     }
-    public void PickTrack1()
+
+    public void ProceduralTrack()
     {
         SceneManager.LoadScene(2);
     }
-    public void PickProceduralTrack()
-    {
-        SceneManager.LoadScene(3);
-    }
-    public void CarSelect()
-    {
-        SceneManager.LoadScene(4);
 
+    public void Quit()
+    {
+        Application.Quit();
     }
+
 
 }
