@@ -34,7 +34,7 @@ public class CarController : MonoBehaviour
 
     void Start()
     {
-        
+
         In = GetComponent<InputManager>();
         rb = GetComponent<Rigidbody>();
         audios = GetComponent<AudioSource>();
@@ -47,7 +47,7 @@ public class CarController : MonoBehaviour
     }
     void Update()
     {
-       
+
 
         if (In.HeadLights)// if the button for turning on and off the headlights is pressed
         {
@@ -106,6 +106,17 @@ public class CarController : MonoBehaviour
         Rpm = Rpm * FinalDriveRatio * GearRatio[CurGear];
         Flag = true;
 
+        if (Rpm < 5000 && CurGear > 1)// checks if the rpm is less than the min range and the current gear is greater than the first gear
+        {
+            CurGear--;// goes down one gear
+
+        }
+        if (Rpm > 9000 && CurGear != 0 && CurGear < 5)
+        {
+            CurGear++;// goes up by one gear
+        }
+
+
         foreach (WheelCollider wheel in throttleWheels) // for throttle torque and brake torque
         {
 
@@ -114,7 +125,7 @@ public class CarController : MonoBehaviour
 
             if (Rpm < MaxRpm && Rpm > -MaxRpm)
             {
-                wheel.motorTorque = strengthCoefficient * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle *10f; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
+                wheel.motorTorque = strengthCoefficient * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle * 10f; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
             }
             else
             {
@@ -142,26 +153,27 @@ public class CarController : MonoBehaviour
             wheel.brakeTorque = BrakeStrength * Time.deltaTime * Convert.ToSingle(In.HandBrake) * 10f;
         }
 
-        // audio 
-        if (Rpm >= 2000f)
-        {
-            audios.pitch = (Rpm / MaxRpm);// change the pitch to depending on the rpm (audio file needs to be at max rpm)
-        }
-        else
-        {
-            audios.pitch = (2000f / MaxRpm);// change the pitch to depending on the rpm (audio file needs to be at max rpm)
-        }
-        if(In.GamePaused){
-
-            audios.pitch = 0f;
-        }
+        EngineAudio();
 
 
     }
-    public float Engine()
+    public void EngineAudio()
     {
-        //float speed = transform.InverseTransformVector(rb.velocity).z;
+        if (In.GamePaused)
+        {
+            audios.pitch = 0f;
+        }
+        else
+        {
+            if (Rpm >= 2000f)
+            {
+                audios.pitch = (Rpm / MaxRpm);// change the pitch to depending on the rpm (audio file needs to be at max rpm)
+            }
+            else
+            {
+                audios.pitch = (2000f / MaxRpm);// change the pitch to depending on the rpm (audio file needs to be at max rpm)
+            }
 
-        return 0f;
+        }
     }
 }

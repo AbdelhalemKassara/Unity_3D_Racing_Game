@@ -22,6 +22,10 @@ public class UIManager : MonoBehaviour
 
        text[3].text = Time;
     }
+    
+    public virtual void CountDown(string Time){
+        text[0].text = Time;
+    }
    
 
 }

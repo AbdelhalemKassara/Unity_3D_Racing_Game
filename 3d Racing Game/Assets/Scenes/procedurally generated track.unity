@@ -923,7 +923,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &306074248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -936,25 +936,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ae9787fa4710994cbc53ea98f51229d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path:
-    points:
-    - {x: 7.5226574, y: -5.572319}
-    - {x: 7.795588, y: -6.3605347}
-    - {x: 8.149423, y: -6.646361}
-    - {x: 8.954556, y: -6.428336}
-    - {x: 10.066717, y: -6.1271706}
-    - {x: 10.351364, y: -5.5256314}
-    - {x: 10.065583, y: -4.409418}
-    - {x: 9.8451805, y: -3.548561}
-    - {x: 9.426756, y: -3.2352855}
-    - {x: 8.565903, y: -3.4557054}
-    - {x: 7.7958198, y: -3.652884}
-    - {x: 8.13384, y: -4.1274357}
-    - {x: 7.7994494, y: -4.8486085}
-    - {x: 7.63648, y: -5.200082}
-    - {x: 7.395893, y: -5.206227}
-    isClosed: 1
-    autoSetControlPoints: 1
 --- !u!4 &306074249
 Transform:
   m_ObjectHideFlags: 0
@@ -2479,6 +2460,7 @@ MonoBehaviour:
   ShiftDown: 0
   CamView: 0
   HandBrake: 0
+  GamePaused: 0
 --- !u!114 &997597027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2728,7 +2710,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1156750426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3575,6 +3557,7 @@ MonoBehaviour:
   ShiftDown: 0
   CamView: 1
   HandBrake: 0
+  GamePaused: 0
 --- !u!114 &1796298525
 MonoBehaviour:
   m_ObjectHideFlags: 0

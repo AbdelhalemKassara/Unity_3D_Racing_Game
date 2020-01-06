@@ -5,46 +5,52 @@ using UnityEngine;
 public class RaceTime : MonoBehaviour
 {
     public UIManager uim;
-
-    private float StartTime;
-    private int hours;
-    private int min;
-    private int sec;
+    public UIManager otherUim;
+    private int[] GameTimer = new int[3];
     public GameObject thing;
     private float countdownTime;
+    public float StartTime;
+    private bool once = true;
+    private bool things = true;
 
-    // Update is called once per frame
+
+
     void Update()
     {
-        countdownTime += Time.fixedDeltaTime;
+        if (things){
+            StartTime = -Time.unscaledDeltaTime;
+            things = false;
+        }
+        StartTime += Time.unscaledDeltaTime; // gets the current time 
 
-       // Debug.Log(countdownTime + "CountdownTime");
-        if (countdownTime > 3f)
+       // Debug.Log(StartTime + "st");
+        //Debug.Log(Time.deltaTime);
+        if (StartTime > 3f)
         {
-          
             Resume();
-            StartTime += Time.fixedDeltaTime;
-            hours = (int)(StartTime / 3600f);
-            min = (int)(StartTime / 60f);
-            sec = (int)(StartTime);
-            Debug.Log(hours + ":" + min + ":" + sec);
-            uim.ChangeTime(hours + ":" + min + ":" + sec);
+            GameTimer[2] = (int)((StartTime - 3f) / 3600f); // divides the current time by 3600 to get the time in hours
+            GameTimer[1] = (int)(((StartTime - 3f) - (GameTimer[2] * 3600f)) / 60f);//
+            GameTimer[0] = (int)((StartTime - 3f) - (GameTimer[1] * 60f) - (GameTimer[2] * 3600f));
+            otherUim.ChangeTime(GameTimer[2] + ":" + GameTimer[1] + ":" + GameTimer[0]);
         }
         else
         {
-            Debug.Log("game should be paused");
+            uim.CountDown(((int)(4f - StartTime)).ToString());
             Pause();
         }
     }
     void Pause()
     {
-        //thing.SetActive(true);// 
+        thing.SetActive(true);// 
         Time.timeScale = 0f; // 
     }
     void Resume()
     {
-        
-        //thing.SetActive(false);// 
-        Time.timeScale = 1f; // 
+        if (once)
+        {
+            thing.SetActive(false);// 
+            Time.timeScale = 1f; // 
+            once = false;
+        }
     }
 }

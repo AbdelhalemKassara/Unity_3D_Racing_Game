@@ -6,7 +6,7 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     public InputManager In;
-
+    private bool once = false;
     public GameObject PauseMenuUI;
     void start()
     {
@@ -24,21 +24,22 @@ public class PauseMenu : MonoBehaviour
         {
             Resume();
         }
-        Debug.Log(In.GamePaused);
 
     }
     void Pause()
     {
-
-
+        if (once){
         PauseMenuUI.SetActive(true);// activates the game object storing the menu
         Time.timeScale = 0f; // changes the time in the game (used for slow motion effects)
-
+        once = false;
+        }
     }
     void Resume()
     {
+        if (!once){
         PauseMenuUI.SetActive(false);// deactiveates the game object storing the menu
         Time.timeScale = 1f; // changes the time in the game to 1 (1 second real life = 1 second in game)
-
+        once = true;
+        }
     }
 }

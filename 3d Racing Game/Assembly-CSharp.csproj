@@ -49,14 +49,13 @@
      <Compile Include="Assets\Scripts\CameraManager.cs" />
      <Compile Include="Assets\Scripts\CarController.cs" />
      <Compile Include="Assets\Scripts\CarScript.cs" />
+     <Compile Include="Assets\Scripts\EndOfRace.cs" />
      <Compile Include="Assets\Scripts\InputManager.cs" />
      <Compile Include="Assets\Scripts\LightingManager.cs" />
      <Compile Include="Assets\Scripts\MeshGenerator.cs" />
-     <Compile Include="Assets\Scripts\Path.cs" />
-     <Compile Include="Assets\Scripts\PathCreator.cs" />
-     <Compile Include="Assets\Scripts\PathEditor.cs" />
      <Compile Include="Assets\Scripts\PauseMenu.cs" />
      <Compile Include="Assets\Scripts\RaceTime.cs" />
+     <Compile Include="Assets\Scripts\SettingsMenu.cs" />
      <Compile Include="Assets\Scripts\UIManager.cs" />
      <Compile Include="Assets\Scripts\WheelsScript.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
