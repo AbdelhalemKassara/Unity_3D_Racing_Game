@@ -32,13 +32,14 @@ public class InputManager : MonoBehaviour
         }
 
         ConnectedCon = Input.GetJoystickNames(); // gets the names of all the controllers and stores them in an array
-        if (ConnectedCon.Length > 0 && ConnectedCon[0] != "")// checks if something is stored in the array if something is stored it checks if it is blank 
-        {
+        if (ConnectedCon.Length > 0 )// checks if something is stored in the array if something is stored it checks if it is blank 
+        {//&& ConnectedCon[0] != ""
             throttle = Input.GetAxis("ThrottleTrigger");
             steer = Input.GetAxis("ConSteer");
             brake = Input.GetAxis("BrakeTrigger");
 
         }
+        
         else
         {
             throttle = Input.GetAxis("ThrottleKey");

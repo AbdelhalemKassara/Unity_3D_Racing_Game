@@ -10,7 +10,7 @@ public class AntiRollBar : MonoBehaviour
     public float AntiRoll = 50000f;
     void Start()
     {
-        carRigidBody = GetComponent<Rigidbody>();
+        carRigidBody = GetComponent<Rigidbody>(); //gets the rigidbody of the car 
     }
     void FixedUpdate()
     {
@@ -18,7 +18,7 @@ public class AntiRollBar : MonoBehaviour
         float travelL = 1f;
         float travelR = 1f;
 
-        bool groundedL = WheelL.GetGroundHit(out hit);
+        bool groundedL = WheelL.GetGroundHit(out hit);//if the wheel is touching the ground
 
         if (groundedL)
         {
