@@ -9,13 +9,20 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
 {
 
     public UIManager uim;
-    public InputManager In; // 
-                            // public means that the variable can be modified in unity menu 
-    public List<WheelCollider> AllWheels; // gets all the wheels Wheelcollider //list is the same as an array but you can change the size of them
-    public List<Transform> meshes;// gets the wheel meshes
-    public List<WheelCollider> throttleWheels;// declairs a list of wheel colliders called throttleWheels
-    public List<GameObject> steeringWheels;// declairs a list of steering wheel colliders called steeringWheels
-    public List<WheelCollider> RearWheels;// 
+    public InputManager In; //public means that the variable can be modified in unity menu 
+    
+    [SerializeField]
+    public Wheel Wheels;
+    
+    [Serializable]
+    public struct Wheel
+    {
+        public List<WheelCollider> AllWheelColliders; // gets all the wheels Wheelcollider //list is the same as an array but you can change the size of them
+        public List<Transform> AllMeshes;// gets the wheel meshes
+        public List<GameObject> steeringWheels;// declairs a list of steering wheel colliders called steeringWheel
+    }
+    public bool FWD;
+    public bool RWD;
     public float strengthCoefficient = 500f;// declairs a variable called strengthCoefficient and gives it a value of 20000, f means float
     public float BrakeStrength = 50f;// stores the break strength on each wheel
     public float maxTurn = 20f; // declairs a float called maxTurn and sets it to 20 (degrees)
@@ -87,7 +94,7 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
     public void EngineRpm()
     {
         bool Flag = true;
-        foreach (WheelCollider wheel in throttleWheels) // gets the wheel with the greatest rpm
+        foreach (WheelCollider wheel in Wheels.AllWheelColliders) // gets the wheel with the greatest rpm
         {
             if (Flag)
             {
@@ -155,7 +162,7 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
     }
     public void Steering()
     {
-        foreach (GameObject wheel in steeringWheels)//loops through each of the steering wheels 
+        foreach (GameObject wheel in Wheels.steeringWheels)//loops through each of the steering wheels 
         {
 
             wheel.GetComponent<WheelCollider>().steerAngle = maxTurn * In.steer;//in the wheel object in the wheelcollider make the steerAngle equal to the maxTurn multiplied by the Input 
@@ -164,41 +171,51 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
     }
     public void MeshPosition()
     {
-        for (int i = 0; i < meshes.Count; i++)
+        for (int i = 0; i < Wheels.AllMeshes.Count; i++)
         {
-            AllWheels[i].GetWorldPose(out Vector3 Pos, out Quaternion quaternion); // gets the rotatation and positon of the wheel collider
-            meshes[i].rotation = quaternion; // sets the rotation of the wheel equal to the roatation of the wheel collider
-            meshes[i].position = Pos; // sets the position of the wheel equal to the positon of the wheel collider
+            Wheels.AllWheelColliders[i].GetWorldPose(out Vector3 Pos, out Quaternion quaternion); // gets the rotatation and positon of the wheel collider
+           Wheels.AllMeshes[i].rotation = quaternion; // sets the rotation of the wheel equal to the roatation of the wheel collider
+            Wheels.AllMeshes[i].position = Pos; // sets the position of the wheel equal to the positon of the wheel collider
         }
     }
     public void handBrake()
     {
-        foreach (WheelCollider wheel in RearWheels)
-        {
-
-            wheel.brakeTorque = BrakeStrength * Time.deltaTime * Convert.ToSingle(In.HandBrake);// converts a boolean to a float
-        }
+        Wheels.AllWheelColliders[2].brakeTorque = BrakeStrength * Time.deltaTime * Convert.ToSingle(In.HandBrake);// converts a boolean to a float//left rear
+        Wheels.AllWheelColliders[3].brakeTorque = BrakeStrength * Time.deltaTime * Convert.ToSingle(In.HandBrake);// converts a boolean to a float//rigth rear
     }
     public void Breaking()
     {
-        foreach (WheelCollider wheel in throttleWheels)
+        foreach (WheelCollider wheel in Wheels.AllWheelColliders)
         {
             wheel.brakeTorque = BrakeStrength * Time.deltaTime * In.brake;
         }
     }
+
     public void Throttle()
     {
-        foreach (WheelCollider wheel in throttleWheels) // loops through each of the throttle and brake wheels
+
+        if (Rpm < MaxRpm && Rpm > -MaxRpm)
         {
-            if (Rpm < MaxRpm && Rpm > -MaxRpm)
+            if (FWD)
             {
-                wheel.motorTorque = strengthCoefficient * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
+                Wheels.AllWheelColliders[0].motorTorque = strengthCoefficient * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
+                Wheels.AllWheelColliders[1].motorTorque = strengthCoefficient * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
             }
-            else
+            if (RWD)
+            {
+                Wheels.AllWheelColliders[2].motorTorque = strengthCoefficient * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
+                Wheels.AllWheelColliders[3].motorTorque = strengthCoefficient * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
+            }
+
+        }
+        else
+        {
+            foreach (WheelCollider wheel in Wheels.AllWheelColliders)
             {
                 wheel.motorTorque = 0f;//set the wheel torque to 0 
             }
         }
+
 
     }
     public float EngineCurve(float rpm)
