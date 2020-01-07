@@ -25,6 +25,5 @@ public class Buttons : MonoBehaviour
     {
         Application.Quit();
     }
-
-
+   
 }

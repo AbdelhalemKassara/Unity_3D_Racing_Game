@@ -22,7 +22,6 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
     public Transform CM;// center of mass
     public Rigidbody rb;// rigid body
     public AudioSource audios;
-    public AudioSource audioIdle;
     public LightingManager ln; // calles the lighting manager class
     public Transform carPosition; // stores the cars center position
     public List<GameObject> TailLights; // stores the tail lights (for lighting up the tail lights)
@@ -38,7 +37,6 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
         In = GetComponent<InputManager>();//gets the input manager in this object
         rb = GetComponent<Rigidbody>();
         audios = GetComponent<AudioSource>();
-        audioIdle = GetComponent<AudioSource>();
 
         if (CM)// checks to see if the center of mass object exists
         {
