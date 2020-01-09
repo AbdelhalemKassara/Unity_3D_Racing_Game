@@ -10,10 +10,10 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
 
     public UIManager uim;
     public InputManager In; //public means that the variable can be modified in unity menu 
-    
+
     [SerializeField]
     public Wheel Wheels;
-    
+
     [Serializable]
     public struct Wheel
     {
@@ -174,7 +174,7 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
         for (int i = 0; i < Wheels.AllMeshes.Count; i++)
         {
             Wheels.AllWheelColliders[i].GetWorldPose(out Vector3 Pos, out Quaternion quaternion); // gets the rotatation and positon of the wheel collider
-           Wheels.AllMeshes[i].rotation = quaternion; // sets the rotation of the wheel equal to the roatation of the wheel collider
+            Wheels.AllMeshes[i].rotation = quaternion; // sets the rotation of the wheel equal to the roatation of the wheel collider
             Wheels.AllMeshes[i].position = Pos; // sets the position of the wheel equal to the positon of the wheel collider
         }
     }
@@ -206,7 +206,7 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
                 Wheels.AllWheelColliders[2].motorTorque = strengthCoefficient * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
                 Wheels.AllWheelColliders[3].motorTorque = strengthCoefficient * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
             }
-
+        Debug.Log(In.brake);
         }
         else
         {
@@ -218,10 +218,21 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
 
 
     }
-    public float EngineCurve(float rpm)
+    public float EngineCurve(float a, float b, float c, float d, float rpm)
     {
-        return 0f;
+        return CubicCurve(a, b, c, d, rpm);
+        // make a cubic curve
     }
+    
+    public float QuadraticCurve(float a, float b, float c, float rpm)
+    {
+        return Mathf.Lerp(Mathf.Lerp(a, b, rpm), Mathf.Lerp(b, c, rpm), rpm);
+    }
+    public float CubicCurve(float a, float b, float c, float d, float rpm)
+    {
+        return Mathf.Lerp(QuadraticCurve(a, b, c, rpm), QuadraticCurve(b, c, d, rpm), rpm);
+    }
+
     public float BrakeCurve()
     {
         return 0f;
@@ -230,4 +241,6 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
     {
         return 0f;
     }
+
+
 }

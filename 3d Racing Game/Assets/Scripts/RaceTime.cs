@@ -8,25 +8,32 @@ public class RaceTime : MonoBehaviour
     public UIManager otherUim;
     private int[] GameTimer = new int[3];
     public GameObject thing;
-    private float countdownTime;
+    private float countDownTime;
     public float StartTime;
     private bool once = true;
     private bool things = true;
-
+    private bool thing1 = true;
 
 
     void Update()
     {
-        if (things){
-            StartTime = -Time.unscaledDeltaTime;
+        if (things)
+        {// use 2 variables one for countdown one for lap time (deltatime,unscaleddeltatime)
+            countDownTime = -Time.unscaledDeltaTime;//Time.unscaledDeltaTime
             things = false;
         }
-        StartTime += Time.unscaledDeltaTime; // gets the current time 
 
-       // Debug.Log(StartTime + "st");
+        // Debug.Log(StartTime + "st");
         //Debug.Log(Time.deltaTime);
-        if (StartTime > 3f)
+        if (countDownTime > 3f)
         {
+            if (thing1)
+            {
+                StartTime += Time.deltaTime + countDownTime;
+                thing1 = false;
+            }
+            StartTime += Time.deltaTime;
+
             Resume();
             GameTimer[2] = (int)((StartTime - 3f) / 3600f); // divides the current time by 3600 to get the time in hours
             GameTimer[1] = (int)(((StartTime - 3f) - (GameTimer[2] * 3600f)) / 60f);//
@@ -35,7 +42,8 @@ public class RaceTime : MonoBehaviour
         }
         else
         {
-            uim.CountDown(((int)(4f - StartTime)).ToString());
+            countDownTime += Time.unscaledDeltaTime; // gets the current time 
+            uim.CountDown(((int)(4f - countDownTime)).ToString());
             Pause();
         }
     }

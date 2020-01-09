@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;// for creating lists
+
+
 [RequireComponent(typeof(InputManager))]
 
 public class CameraManager : MonoBehaviour
 {
-    public GameObject focus;//
+    public int SelectCar;
+    public List<GameObject> cars;
+    private GameObject focus;//
     public float distance = 5f;//
     public float height = 2f;//
     public float dampening = 1f;//
@@ -15,7 +20,7 @@ public class CameraManager : MonoBehaviour
 
     public float h = 0.7f;
     public float d = -0.07f;
-    public float l = -0.32f;
+    public float l = -0.32f;// variables are different in the editor
 
     public float h1 = 0.7f;
     public float d1 = -0.07f;
@@ -24,7 +29,9 @@ public class CameraManager : MonoBehaviour
     public InputManager In; // 
     void Start()
     {
-
+        
+        focus = cars[SelectCar];
+        
         In = GetComponent<InputManager>();
 
     }

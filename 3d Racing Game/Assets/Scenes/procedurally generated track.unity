@@ -923,7 +923,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &306074248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -933,9 +933,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 306074247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ae9787fa4710994cbc53ea98f51229d, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e67216fbe5d8ab4e9a8e2d9a121d825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  path:
+    points:
+    - {x: -1, y: 0}
+    - {x: -0.4616779, y: -0.84273916}
+    - {x: 0.37142944, y: -0.77775264}
+    - {x: 1, y: 0}
+    - {x: 1.2745122, y: 0.33966368}
+    - {x: 1.1344564, y: 0.5543569}
+    - {x: 0.8167519, y: 0.8540103}
+    - {x: 0.2643388, y: 1.3750367}
+    - {x: -0.06164819, y: 1.5200653}
+    - {x: -0.68425006, y: 1.0853289}
+    - {x: -0.98305136, y: 0.8766887}
+    - {x: -0.7148085, y: 0.7171629}
+    - {x: -0.8281817, y: 0.3708112}
+    - {x: -0.891751, y: 0.17660882}
+    - {x: -1.1100018, y: 0.17220694}
+    isClosed: 1
+    autoSetControlPoints: 0
 --- !u!4 &306074249
 Transform:
   m_ObjectHideFlags: 0
@@ -944,7 +963,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 306074247}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.522657, y: -5.572319, z: 8.706987}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3572,34 +3591,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uim: {fileID: 203461223}
   In: {fileID: 1796298524}
-  AllWheels:
-  - {fileID: 722928689}
-  - {fileID: 1247715590}
-  - {fileID: 592724917}
-  - {fileID: 1050257030}
-  meshes:
-  - {fileID: 239101271}
-  - {fileID: 1945733980}
-  - {fileID: 10999078}
-  - {fileID: 239032075}
-  throttleWheels:
-  - {fileID: 722928689}
-  - {fileID: 1247715590}
-  - {fileID: 592724917}
-  - {fileID: 1050257030}
-  steeringWheels:
-  - {fileID: 722928688}
-  - {fileID: 592724916}
-  RearWheels:
-  - {fileID: 1247715590}
-  - {fileID: 1050257030}
+  Wheels:
+    AllWheelColliders: []
+    AllMeshes: []
+    steeringWheels: []
+  FWD: 0
+  RWD: 0
   strengthCoefficient: 1000
   BrakeStrength: 50000
   maxTurn: 40
   CM: {fileID: 75202824}
   rb: {fileID: 1796298527}
   audios: {fileID: 1796298521}
-  audioIdle: {fileID: 0}
   ln: {fileID: 1796298523}
   carPosition: {fileID: 1796298529}
   TailLights:
@@ -3614,6 +3617,7 @@ MonoBehaviour:
   - 0.848
   FinalDriveRatio: 4.4
   MaxRpm: 9000
+  UseAutoTransmittion: 0
 --- !u!65 &1796298526
 BoxCollider:
   m_ObjectHideFlags: 0
