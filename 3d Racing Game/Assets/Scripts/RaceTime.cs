@@ -50,7 +50,9 @@ public class RaceTime : MonoBehaviour
     void Pause()
     {
         thing.SetActive(true);// 
-        Time.timeScale = 0f; // 
+        
+            Time.timeScale = 0f; // 
+        
     }
     void Resume()
     {

@@ -206,7 +206,6 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
                 Wheels.AllWheelColliders[2].motorTorque = strengthCoefficient * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
                 Wheels.AllWheelColliders[3].motorTorque = strengthCoefficient * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
             }
-        Debug.Log(In.brake);
         }
         else
         {
@@ -223,24 +222,23 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
         return CubicCurve(a, b, c, d, rpm);
         // make a cubic curve
     }
-    
+  
+    public float Lerp(float a, float b, float rpm)
+    {
+        return a + (b - a) * rpm;
+    }
     public float QuadraticCurve(float a, float b, float c, float rpm)
     {
-        return Mathf.Lerp(Mathf.Lerp(a, b, rpm), Mathf.Lerp(b, c, rpm), rpm);
+        return Lerp(Lerp(a, b, rpm), Lerp(b, c, rpm), rpm);
     }
     public float CubicCurve(float a, float b, float c, float d, float rpm)
     {
-        return Mathf.Lerp(QuadraticCurve(a, b, c, rpm), QuadraticCurve(b, c, d, rpm), rpm);
+        return Lerp(QuadraticCurve(a, b, c, rpm), QuadraticCurve(b, c, d, rpm), rpm);
     }
 
     public float BrakeCurve()
     {
         return 0f;
     }
-    public float Differential()
-    {
-        return 0f;
-    }
-
-
+    
 }

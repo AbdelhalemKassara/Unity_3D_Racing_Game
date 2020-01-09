@@ -6,14 +6,14 @@ using System.Collections.Generic;// for creating lists
 
 public class CameraManager : MonoBehaviour
 {
-    public int SelectCar;
-    public List<GameObject> cars;
-    private GameObject focus;//
-    public float distance = 5f;//
-    public float height = 2f;//
-    public float dampening = 1f;//
+    private GameObject focus;
+    public CarSelect CarSelection;
+    public float distance = 5f;
+    public float height = 2f;
+    public float dampening = 1f;
     private int camMode = 0;
     private protected int NumOfCam = 5;
+  
     public float h2 = 0.7f;
     public float d2 = -0.07f;
     public float l2 = -0.32f;
@@ -29,10 +29,8 @@ public class CameraManager : MonoBehaviour
     public InputManager In; // 
     void Start()
     {
-        
-        focus = cars[SelectCar];
-        
         In = GetComponent<InputManager>();
+        focus = CarSelection.SelectedCar;
 
     }
     // Update is called once per frame
@@ -70,7 +68,7 @@ public class CameraManager : MonoBehaviour
                 transform.LookAt(focus.transform);
                 Camera.main.fieldOfView = 60f;
                 break;
-
         }
+
     }
 }
