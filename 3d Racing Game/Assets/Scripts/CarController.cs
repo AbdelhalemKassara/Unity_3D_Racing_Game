@@ -196,15 +196,25 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
 
         if (Rpm < MaxRpm && Rpm > -MaxRpm)
         {
+            float TorqueToWheels;
+            if (CurGear == 0 || Rpm < 0f)
+            {
+                TorqueToWheels = strengthCoefficient;
+            }
+            else
+            {
+                TorqueToWheels = EngineCurve(strengthCoefficient, MaxRpm, 1000, Rpm);
+            }
             if (FWD)
             {
-                Wheels.AllWheelColliders[0].motorTorque = strengthCoefficient * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
-                Wheels.AllWheelColliders[1].motorTorque = strengthCoefficient * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
+                //Debug.Log();
+                Wheels.AllWheelColliders[0].motorTorque = TorqueToWheels * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
+                Wheels.AllWheelColliders[1].motorTorque = TorqueToWheels * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
             }
             if (RWD)
             {
-                Wheels.AllWheelColliders[2].motorTorque = strengthCoefficient * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
-                Wheels.AllWheelColliders[3].motorTorque = strengthCoefficient * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
+                Wheels.AllWheelColliders[2].motorTorque = TorqueToWheels * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
+                Wheels.AllWheelColliders[3].motorTorque = TorqueToWheels * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
             }
         }
         else
@@ -217,12 +227,13 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
 
 
     }
-    public float EngineCurve(float a, float b, float c, float d, float rpm)
+    public float EngineCurve(float PeakTorque, float PeakRpm, float InitialTorque, float rpm)
     {
-        return CubicCurve(a, b, c, d, rpm);
-        // make a cubic curve
+        float Zero = (float)Math.Sqrt((double)PeakTorque - InitialTorque);
+        PeakRpm = (2 * Zero) / PeakRpm;
+        return -1f * (float)Math.Pow((double)PeakRpm * rpm - Zero, 2) + PeakTorque;
     }
-  
+
     public float Lerp(float a, float b, float rpm)
     {
         return a + (b - a) * rpm;
@@ -240,5 +251,5 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
     {
         return 0f;
     }
-    
+
 }

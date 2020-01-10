@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;// for creating lists
 
 
 [RequireComponent(typeof(InputManager))]
@@ -13,7 +12,7 @@ public class CameraManager : MonoBehaviour
     public float dampening = 1f;
     private int camMode = 0;
     private protected int NumOfCam = 5;
-  
+
     public float h2 = 0.7f;
     public float d2 = -0.07f;
     public float l2 = -0.32f;

@@ -5,18 +5,15 @@ using UnityEngine.UI;
 
 public class CarSelect : MonoBehaviour
 {
-    private bool once = false;
-   // [HideInInspector]
     public int CarIndex;
     public List<GameObject> cars;
-    public GameObject CarSelectMenu;
+
     [HideInInspector]
     public GameObject SelectedCar;
-    public Dropdown CarDropDown;
 
     void Awake()//runs before the start loop
     {
-         if (CarIndex <= cars.Count - 1)
+        if (CarIndex <= cars.Count - 1)
         {
             for (int i = 0; i < cars.Count; i++)
             {
@@ -25,52 +22,50 @@ public class CarSelect : MonoBehaviour
             SelectedCar = cars[CarIndex];
             cars[CarIndex].SetActive(true);
         }
-        else
-        {
-            Debug.Log("Index is not selected or valid");
-        }
-
 
     }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private bool once = false;
+
+
+    public Dropdown CarDropDown;
+    public GameObject CarSelectMenu;
+
+
     public void SelectCar(int Index)
     {
-        SelectedCar = cars[CarIndex];       
+        SelectedCar = cars[CarIndex];
     }
 
     // Update is called once per frame
-    void stuff()
+    private void stuff()
     {
         Debug.Log(cars[1].name);
         List<string> CarOptions = new List<string>();

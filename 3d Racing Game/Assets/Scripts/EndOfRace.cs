@@ -7,8 +7,8 @@ public class EndOfRace : MonoBehaviour
 {
 
 
-    void OnTriggerEnter()
+    void OnTriggerEnter()//when another object collides with this object 
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(2);//calls the scenemanager and loads the scene with the index of 2
     }
 }

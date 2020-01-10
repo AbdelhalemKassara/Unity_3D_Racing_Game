@@ -11,13 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Track1.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/procedurally generated track.unity
     guid: 11c40240253d8aa4a988306bc111b727
   - enabled: 1
     path: Assets/Scenes/EndOfRace.unity
     guid: b20837c299c758d4e927fa3add77a47f
-  - enabled: 1
-    path: Assets/Scenes/Settings.unity
-    guid: c7c995be822e620449c045d051c5381c
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

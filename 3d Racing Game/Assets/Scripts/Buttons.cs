@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
@@ -8,7 +6,7 @@ public class Buttons : MonoBehaviour
 
     public void Menu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);//loads the scene with an index of 0
     }
 
     public void Track1()
