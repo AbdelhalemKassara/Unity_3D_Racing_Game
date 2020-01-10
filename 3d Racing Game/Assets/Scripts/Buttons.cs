@@ -14,14 +14,22 @@ public class Buttons : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void ProceduralTrack()
-    {
-        SceneManager.LoadScene(2);
-    }
 
     public void Quit()
     {
         Application.Quit();
     }
-   
+    public void Relaod()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void Track2()
+    {
+        SceneManager.LoadScene(3);
+    }
+    public void Track3()
+    {
+        SceneManager.LoadScene(4);
+    }
+
 }
