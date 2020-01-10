@@ -14,8 +14,8 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
     [SerializeField]
     public Wheel Wheels;
 
-    [Serializable]
-    public struct Wheel
+    [Serializable]//makes the struct visiable in the inspector  
+    public struct Wheel//stores all the wheel objects
     {
         public List<WheelCollider> AllWheelColliders; // gets all the wheels Wheelcollider //list is the same as an array but you can change the size of them
         public List<Transform> AllMeshes;// gets the wheel meshes
@@ -130,9 +130,8 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
     {
         foreach (GameObject tl in TailLights)// for each of the headlights it changes the color of them
         {
-            tl.GetComponent<Renderer>().material.SetColor("_EmissionColor", Convert.ToBoolean(In.brake) ? new Color(.5f, 0.111f, 0.111f) : Color.black);//
+            tl.GetComponent<Renderer>().material.SetColor("_EmissionColor", Convert.ToBoolean(In.brake) ? new Color(.5f, 0.111f, 0.111f) : Color.black);//range of color is 0 - 1
         }
-
 
     }
     public void headLights()
@@ -203,11 +202,10 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
             }
             else
             {
-                TorqueToWheels = EngineCurve(strengthCoefficient, MaxRpm, 1000, Rpm);
+                TorqueToWheels = EngineCurve(strengthCoefficient, MaxRpm, 1000f, Rpm);
             }
             if (FWD)
             {
-                //Debug.Log();
                 Wheels.AllWheelColliders[0].motorTorque = TorqueToWheels * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
                 Wheels.AllWheelColliders[1].motorTorque = TorqueToWheels * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
             }

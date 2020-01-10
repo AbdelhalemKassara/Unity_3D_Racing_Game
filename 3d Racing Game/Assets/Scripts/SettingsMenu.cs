@@ -42,9 +42,9 @@ public class SettingsMenu : MonoBehaviour
     }
     public void SetFullScreen(bool isFullScreen)
     {
-
         Screen.fullScreen = isFullScreen;// sets the state of the button (boolean) equal to the fullscreen option in the unity engine 
     }
+    
     public void SetResolution (int resolutionIndex){// inputs the index of the selected resolution on the drop down
         Resolution resolution = resolutions[resolutionIndex];//creates a new variable called resolution that will store the selected resolution
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);// sets the current resolution equal to the resolution stored in the variable called resolution

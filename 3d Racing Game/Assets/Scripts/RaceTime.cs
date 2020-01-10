@@ -42,7 +42,7 @@ public class RaceTime : MonoBehaviour
         }
         else
         {
-            countDownTime += Time.unscaledDeltaTime; // gets the current time 
+            countDownTime += Time.unscaledDeltaTime; // gets the time inbetween the last frame and this frame, uscaled is the time unaffected by the timescale  
             uim.CountDown(((int)(4f - countDownTime)).ToString());
             Pause();
         }
@@ -51,7 +51,7 @@ public class RaceTime : MonoBehaviour
     {
         thing.SetActive(true);// 
         
-            Time.timeScale = 0f; // 
+            Time.timeScale = 0f; // used for slow motion
         
     }
     void Resume()

@@ -24,7 +24,6 @@ public class CameraManager : MonoBehaviour
     public float h1 = 0.7f;
     public float d1 = -0.07f;
     public float l1 = -0.32f;
-
     public InputManager In; // 
     void Start()
     {
