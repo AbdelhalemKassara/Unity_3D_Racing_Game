@@ -13,7 +13,7 @@ public class CarSelect : MonoBehaviour
 
     void Awake()//runs before the start loop
     {
-        if (CarIndex <= cars.Count - 1)//remove the equal sign and the -1
+        if (CarIndex <= cars.Count - 1 && cars[CarIndex] != SelectedCar)//remove the equal sign and the -1
         {
             for (int i = 0; i < cars.Count; i++)
             {
@@ -24,7 +24,27 @@ public class CarSelect : MonoBehaviour
         }
 
     }
+    void Update()
+    {
+        if (CarIndex <= cars.Count - 1 && cars[CarIndex] != SelectedCar)//remove the equal sign and the -1
+        {
+            for (int i = 0; i < cars.Count; i++)
+            {
+                cars[i].SetActive(false);
+            }
+            SelectedCar = cars[CarIndex];
+            cars[CarIndex].SetActive(true);
+        }
 
+    }
+    public void PickFirstCar()
+    {
+        CarIndex = 0;
+    }
+    public void PickSecondCar()
+    {
+        CarIndex = 1;
+    }
 
 
 

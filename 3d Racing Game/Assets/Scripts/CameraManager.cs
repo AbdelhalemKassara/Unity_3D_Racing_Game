@@ -34,6 +34,8 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        focus = CarSelection.SelectedCar;
+
         if (In.CamView)
         {
             camMode = (camMode + 1) % NumOfCam;
