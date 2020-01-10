@@ -39,7 +39,7 @@ public class InputManager : MonoBehaviour
             brake = Input.GetAxis("BrakeTrigger");
 
         }
-        
+
         else
         {
             throttle = Input.GetAxis("ThrottleKey");

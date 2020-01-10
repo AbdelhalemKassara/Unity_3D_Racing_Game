@@ -4,7 +4,7 @@ public class AntiRollBar : MonoBehaviour//this class derives from the MonoBehavi
 {
     public WheelCollider WheelL;//creates a new variable for the left wheelcollider
     public WheelCollider WheelR;//creates a new variable for the right wheelcollider
-    private Rigidbody carRigidBody;//creates
+    private Rigidbody carRigidBody;//
     public float AntiRoll = 50000f;// default antiroll force applied
     void Start()
     {
