@@ -8,6 +8,7 @@ public class CarSelect : MonoBehaviour
     public int CarIndex;
     public List<GameObject> cars;
 
+    public Buttons Selection;
     [HideInInspector]
     public GameObject SelectedCar;
 
