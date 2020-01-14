@@ -187,7 +187,7 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
         foreach (WheelCollider wheel in Wheels.AllWheelColliders)
         {
             wheel.brakeTorque = BrakeStrength * Time.deltaTime * In.brake;
-        }
+        }//BrakeCurve(0f,BrakeStrength,Rpm);//change rpm to the rpm of the wheel
     }
 
     public void Throttle()
@@ -232,6 +232,11 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
         return -1f * (float)Math.Pow((double)PeakRpm * rpm - Zero, 2) + PeakTorque;
     }
 
+    public float BrakeCurve(float PeakForce, float startForce, float rpm)//rpm of the wheel not the engine
+    {
+        return Lerp(startForce, PeakForce, rpm);
+    }
+
     public float Lerp(float a, float b, float rpm)
     {
         return a + (b - a) * rpm;
@@ -245,9 +250,5 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
         return Lerp(QuadraticCurve(a, b, c, rpm), QuadraticCurve(b, c, d, rpm), rpm);
     }
 
-    public float BrakeCurve()
-    {
-        return 0f;
-    }
 
 }
