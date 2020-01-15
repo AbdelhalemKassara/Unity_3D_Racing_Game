@@ -106,6 +106,7 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
                 if (wheel.rpm > Rpm)// if the current wheel's rpm is greater than the currently stored rpm  
                 {
                     Rpm = wheel.rpm;// set the wheel rpm equal to the current rpm
+
                 }
             }
         }
@@ -186,8 +187,10 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
     {
         foreach (WheelCollider wheel in Wheels.AllWheelColliders)
         {
-            wheel.brakeTorque = BrakeStrength * Time.deltaTime * In.brake;
-        }//BrakeCurve(0f,BrakeStrength,Rpm);//change rpm to the rpm of the wheel
+            wheel.brakeTorque = BrakeCurve(0f, BrakeStrength, Rpm / (FinalDriveRatio * GearRatio[CurGear])) * Time.deltaTime * In.brake;
+            Debug.Log(wheel.brakeTorque);
+        }//BreakeStength
+
     }
 
     public void Throttle()
