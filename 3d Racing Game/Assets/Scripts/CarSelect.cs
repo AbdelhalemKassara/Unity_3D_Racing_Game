@@ -18,7 +18,7 @@ public class CarSelect : MonoBehaviour
         {
             for (int i = 0; i < cars.Count; i++)
             {
-                cars[i].SetActive(false);
+                cars[i].SetActive(false);//disables the car
             }
             SelectedCar = cars[CarIndex];
             cars[CarIndex].SetActive(true);

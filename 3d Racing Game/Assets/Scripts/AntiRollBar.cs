@@ -12,13 +12,13 @@ public class AntiRollBar : MonoBehaviour//this class derives from the MonoBehavi
     }
     void FixedUpdate()//used for physics calculations
     {
-        WheelHit hit = new WheelHit();// WheelHit has all the contact information of the wheels
+        WheelHit hit = new WheelHit();// WheelHit contains information from the wheelcollider
         float travelL = 1f;//declairs new variables 
         float travelR = 1f;
         //if car is grounded it is not out of the range 1-0
-        bool groundedL = WheelL.GetGroundHit(out hit);//if the left wheel is touching another object it returns true
+        bool groundedL = WheelL.GetGroundHit(out hit);//if the left wheel is touching another object it returns true  and gets data about the wheel and stores it in hit
         if (groundedL)
-        {
+        {//hit.point is the point of contact with the ground
             travelL = (-WheelL.transform.InverseTransformPoint(hit.point).y - WheelL.radius) / WheelL.suspensionDistance;//gets the position of the wheel from the point it is touching the ground and subtracts the wheel radius to get the center of the wheel the divides it by the suspention distance to get the value to be inbetween 1 and zero (1 fully extended , 0 full compressed)
 
         }

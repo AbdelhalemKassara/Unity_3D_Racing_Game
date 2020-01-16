@@ -164,7 +164,6 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
     {
         foreach (GameObject wheel in Wheels.steeringWheels)//loops through each of the steering wheels 
         {
-
             wheel.GetComponent<WheelCollider>().steerAngle = maxTurn * In.steer;//in the wheel object in the wheelcollider make the steerAngle equal to the maxTurn multiplied by the Input 
         }
 
@@ -217,7 +216,6 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
                 Wheels.AllWheelColliders[2].motorTorque = TorqueToWheels * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
                 Wheels.AllWheelColliders[3].motorTorque = TorqueToWheels * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
             }
-            Debug.Log(Wheels.AllWheelColliders[1].brakeTorque + "motor torque");
         }
         else
         {
@@ -259,7 +257,7 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
 
     }
     public void Open()
-    {//the power goes to the wheel with the lest resistance (the wheels spin at diff speeds)
+    {//the power goes to the wheel with the lest resistance (the wheels spin at diff speeds)//what the game is doing now
 
     }
     public void LSD()
