@@ -187,9 +187,9 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
     {
         foreach (WheelCollider wheel in Wheels.AllWheelColliders)
         {
-            wheel.brakeTorque = BrakeCurve(0f, BrakeStrength, Rpm / (FinalDriveRatio * GearRatio[CurGear])) * Time.deltaTime * In.brake;
-            Debug.Log(wheel.brakeTorque);
-        }//BreakeStength
+            wheel.brakeTorque = BrakeCurve(BrakeStrength, 100f, Rpm / (FinalDriveRatio * GearRatio[CurGear])) * Time.deltaTime * In.brake;
+
+        }
 
     }
 
@@ -217,6 +217,7 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
                 Wheels.AllWheelColliders[2].motorTorque = TorqueToWheels * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
                 Wheels.AllWheelColliders[3].motorTorque = TorqueToWheels * FinalDriveRatio * GearRatio[CurGear] * Time.deltaTime * In.throttle; // sets the torque of the wheel equal to (mulitply by Time.delatTime to get correct units (force/time(seconds)))
             }
+            Debug.Log(Wheels.AllWheelColliders[1].brakeTorque + "motor torque");
         }
         else
         {
@@ -237,7 +238,7 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
 
     public float BrakeCurve(float PeakForce, float startForce, float rpm)//rpm of the wheel not the engine
     {
-        return Lerp(startForce, PeakForce, rpm);
+        return ((PeakForce - startForce) * (rpm == 0f ? 0f : rpm)) + startForce;
     }
 
     public float Lerp(float a, float b, float rpm)
@@ -251,6 +252,19 @@ public class CarController : MonoBehaviour //this class inherits the MonoBehavio
     public float CubicCurve(float a, float b, float c, float d, float rpm)
     {
         return Lerp(QuadraticCurve(a, b, c, rpm), QuadraticCurve(b, c, d, rpm), rpm);
+    }
+
+    public void Spool()
+    {// solid connection between the wheels(the wheels spin at the same speed)
+
+    }
+    public void Open()
+    {//the power goes to the wheel with the lest resistance (the wheels spin at diff speeds)
+
+    }
+    public void LSD()
+    {
+
     }
 
 
