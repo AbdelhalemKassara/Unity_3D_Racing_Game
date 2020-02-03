@@ -7,7 +7,7 @@ These instructions will get you a copy of the project up and running on your loc
 You will need unity version 2019.2.12f1
 
 ### Installing
-download the FOLDER NAME 
+Download the source code 
 ```
 git clone https://github.com/AbdelhalemKassara/Unity_3D_Racing_Game.git
 ```
