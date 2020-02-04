@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 You will need unity version 2019.2.12f1
 
 ### Installing
-Download the source code 
+Download the source code.
 ```
 git clone https://github.com/AbdelhalemKassara/Unity_3D_Racing_Game.git
 ```
@@ -19,6 +19,6 @@ Next go to file, click on build and run. Unity will start compiling the game.
 When unity has finished compiling the game will start running.
 
 ## Built With 
-C# - programming language the game was written in
+C# - programming language the game was written in.
 
-Unity 2019.2.12f1 - the game engine that was used
+Unity 2019.2.12f1 - the game engine that was used.
