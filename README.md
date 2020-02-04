@@ -19,6 +19,5 @@ Next go to file, click on build and run. Unity will start compiling the game.
 When unity has finished compiling the game will start running.
 
 ## Built With 
-C# - programming language the game was written in.
-
-Unity 2019.2.12f1 - the game engine that was used.
+C# 
+Unity 2019.2.12f1
