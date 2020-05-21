@@ -1,5 +1,6 @@
 # Unity_3D_Racing_Game
-There are multiple camera views for each car, multiple selection menus, realistic handling of the car and a timer to record your lap time. The game also has 2 cars and 3 tracks that you can select through the menus. 
+There are multiple camera views for each car, and multiple selection menus.
+The game has three tracks that you can drive on with an option of picking one of two cars. 
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine.
