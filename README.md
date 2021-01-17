@@ -2,8 +2,12 @@
 There are multiple camera views for each car, and multiple selection menus.
 The game has three tracks that you can drive on with an option of picking one of two cars. 
 
+## Pictures 
+![](racing game pics/Screenshot (101).png)
+
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine.
+
 
 ### Prerequisites
 You will need unity version 2019.2.12f1
@@ -19,7 +23,7 @@ Next go to file, click on build and run. Unity will start compiling the game.
 
 When unity has finished compiling the game will start running.
 
-## Built With 
+
 C# 
 
 Unity 2019.2.12f1
